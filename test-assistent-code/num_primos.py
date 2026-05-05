@@ -1,12 +1,26 @@
 def é_primo(numero):
-    """
-    Verifica se um número é primo.
+    """Verifica se um número é primo.
+    
+    Determina se um número inteiro é primo ou não, utilizando o algoritmo
+    de divisão por números ímpares até a raiz quadrada do número para
+    otimizar a verificação.
     
     Args:
-        numero (int): O número a ser verificado
+        numero (int): O número inteiro a ser verificado.
     
     Returns:
-        bool: True se o número é primo, False caso contrário
+        bool: True se o número é primo, False caso contrário.
+    
+    Raises:
+        TypeError: Se o argumento não for do tipo inteiro.
+    
+    Examples:
+        >>> é_primo(2)
+        True
+        >>> é_primo(10)
+        False
+        >>> é_primo(17)
+        True
     """
     
     # Números menores ou iguais a 1 não são primos
