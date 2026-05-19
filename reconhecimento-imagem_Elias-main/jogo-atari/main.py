@@ -1,4 +1,5 @@
 # main.py
+# pyrefly: ignore [missing-import]
 import pygame
 import sys
 from settings import *
@@ -110,13 +111,9 @@ def main():
             draw_text(screen, "Pressione qualquer tecla para sair", 22, WIDTH // 2, HEIGHT // 2)
             
             # Fechar se pressionar qualquer tecla ao morrer
-            # Esperamos o usuário soltar teclas que já estavam sendo pressionadas antes do game over
-            keys = pygame.key.get_pressed()
-            if any(keys):
-                # Limpamos a fila de eventos e verificamos uma nova tecla
-                for event in pygame.event.get():
-                    if event.type == pygame.KEYDOWN or event.type == pygame.QUIT:
-                        running = False
+            for event in pygame.event.get():
+                if event.type == pygame.KEYDOWN or event.type == pygame.QUIT:
+                    running = False
 
         # Atualizar o display completo
         pygame.display.flip()
