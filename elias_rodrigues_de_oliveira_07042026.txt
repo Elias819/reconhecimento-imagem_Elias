@@ -1,0 +1,486 @@
+Aula 3 - Tema 1:
+
+PROMPT:
+[Quero que você atue como um professor de programação e me explique o que são variáveis de forma simples e clara. Considere que estou começando agora na área e ainda não tenho experiência. Use exemplos curtos do dia a dia para facilitar o entendimento e, se possível, inclua um exemplo simples em código. Evite linguagem muito técnica e não faça uma explicação longa.]
+
+RESPOSTA:
+[Olá! Que bom ter você por aqui começando essa jornada. Como seu professor de programação, vou te explicar esse conceito que é a base de tudo o que fazemos.
+
+### O que é uma variável?
+
+Imagine que uma **variável** é como uma **caixa com uma etiqueta**. No dia a dia, usamos caixas para guardar coisas e saber o que tem dentro sem precisar abrir o tempo todo. 
+
+* **A Caixa:** É o espaço na memória do computador.
+* **A Etiqueta:** É o nome que você dá para a variável (ex: `preco_do_cafe`).
+* **O Conteúdo:** É a informação que você guarda lá dentro (ex: `5.50`).
+
+As variáveis são "variáveis" porque o conteúdo da caixa pode mudar. Hoje a caixa `clima` pode guardar "Ensolarado", amanhã pode guardar "Chuvoso".
+
+---
+
+### Exemplo do dia a dia: O Pote de Açúcar
+
+Pense na sua cozinha. Você tem um pote onde está escrito **"Açúcar"**.
+1. O nome da variável é **Açúcar**.
+2. O valor dentro dela é o **pó branco doce**.
+3. Se o açúcar acabar e você decidir guardar **Farinha** naquele mesmo pote e trocar a etiqueta, você mudou o valor da variável.
+
+
+
+---
+
+### Exemplo em Código (Python)
+
+Em linguagens de programação como Python, criar uma variável é tão simples quanto escrever o nome dela e usar o sinal de igual (`=`) para guardar o valor.
+
+```python
+# Criando a variável e guardando um nome
+nome_usuario = "Carlos"
+
+# Criando uma variável para guardar a idade
+idade = 25
+
+# Se o Carlos fizer aniversário, a gente muda o valor:
+idade = 26
+
+print(nome_usuario)
+print(idade)
+```
+
+**Resumindo:**
+* **Declarar** uma variável é criar a caixa.
+* **Atribuir** um valor é colocar algo dentro da caixa.
+* **Chamar** a variável é usar o que está guardado nela.
+
+Ficou claro esse conceito da "caixa etiquetada" ou quer que eu tente outro exemplo?]
+
+
+Aula 3 - Tema 2:
+
+PROMPT:
+[Quero que você atue como um professor de lógica de programação e crie uma atividade em Python para alunos do primeiro semestre de Engenharia de Software que estão aprendendo lógica de programação pela primeira vez. A atividade deve ser simples, prática e adequada para iniciantes. Organize a resposta com título, objetivo, enunciado, exemplo de entrada e saída, além de uma sugestão de resolução. Evite conteúdos avançados e use linguagem clara.]
+
+RESPOSTA:
+[Olá! É um prazer assumir esse papel. Para alunos que estão começando agora, o segredo é focar em **Entrada, Processamento e Saída**, usando conceitos básicos de operadores aritméticos e variáveis.
+
+Aqui está uma atividade clássica, mas muito eficaz, para consolidar esses primeiros passos.
+
+---
+
+# Atividade de Lógica: O Calculador de Rendimento de Combustível
+
+### **Objetivo**
+Praticar a leitura de dados do usuário (`input`), a conversão de tipos de dados (`float`), a realização de operações matemáticas simples e a exibição de resultados formatados (`print`).
+
+---
+
+### **Enunciado**
+Você foi contratado para desenvolver um script simples para uma empresa de logística. O programa deve auxiliar os motoristas a saberem quanto gastarão em uma viagem.
+
+Escreva um programa em Python que:
+1.  Solicite a **distância** total da viagem (em quilômetros).
+2.  Solicite o **consumo médio** do veículo (quantos km o carro faz com 1 litro).
+3.  Solicite o **preço do litro** do combustível.
+4.  Calcule e exiba na tela:
+    * A quantidade de litros necessária para a viagem.
+    * O custo total em reais que o motorista terá com combustível.
+
+---
+
+### **Exemplo de Entrada e Saída**
+
+**Entrada:**
+* Distância: `250`
+* Consumo médio: `10`
+* Preço do litro: `5.80`
+
+**Saída:**
+* Você precisará de 25.0 litros de combustível.
+* O custo total da viagem será de R$ 145.00.
+
+---
+
+### **Sugestão de Resolução**
+
+Nesta solução, utilizamos o `float()` para garantir que o programa aceite números decimais e formatamos a saída para duas casas decimais no valor monetário.
+
+```python
+# Passo 1: Entrada de dados
+distancia = float(input("Digite a distância da viagem (km): "))
+consumo_medio = float(input("Digite o consumo médio do veículo (km/l): "))
+preco_litro = float(input("Digite o preço do litro do combustível: "))
+
+# Passo 2: Processamento (Cálculos)
+litros_necessarios = distancia / consumo_medio
+custo_total = litros_necessarios * preco_litro
+
+# Passo 3: Saída de dados
+print("-" * 30)
+print(f"Resultado do Planejamento:")
+print(f"Total de litros: {litros_necessarios:.1f} L")
+print(f"Custo total: R$ {custo_total:.2f}")
+```
+
+> **Dica para os alunos:** Lembrem-se que no Python (e na maioria das linguagens), usamos o **ponto (.)** como separador decimal, e não a vírgula! Além disso, a ordem das operações importa, então sempre pensem primeiro em "quanto eu gasto" para depois calcular "o valor total".]
+
+
+Aula 3 - Tema 3:
+
+PROMPT:
+[Quero que você atue como um especialista em tecnologia e inteligência artificial e me explique o que é IA, suas principais possibilidades de uso e como ela é utilizada atualmente pelas pessoas. Considere que sou estudante do ensino superior e estou tendo contato inicial com o tema. Organize a resposta em: definição, aplicações no dia a dia, formas mais comuns de uso atualmente e uma análise com seu ponto de vista sobre impactos e possíveis cenários futuros. Use linguagem clara, evite termos muito técnicos e mantenha a resposta objetiva.]
+
+RESPOSTA:
+[Olá! É um prazer colaborar com você nessa jornada de aprendizado. Como estamos em 2026, a Inteligência Artificial (IA) já deixou de ser uma promessa futurista para se tornar a "eletricidade" da nossa era: algo que está em quase tudo, muitas vezes de forma invisível.
+
+Aqui está um panorama estruturado para você, que está começando a explorar este universo no ensino superior:
+
+---
+
+### 1. Definição: O que é IA?
+De forma simples, a **Inteligência Artificial** é um campo da Ciência da Computação que busca criar sistemas capazes de realizar tarefas que, até pouco tempo atrás, exigiam o raciocínio humano. 
+
+Diferente de um software comum, que segue apenas regras fixas ("se acontecer A, faça B"), a IA foca em **aprendizado e adaptação**. Ela analisa grandes volumes de dados para identificar padrões e tomar decisões ou criar conteúdos de forma autônoma. No ambiente acadêmico, você ouvirá muito sobre *Machine Learning* (Aprendizado de Máquina), que é justamente o motor que permite à IA "aprender" com os erros e acertos.
+
+---
+
+### 2. Aplicações no Dia a Dia
+A IA está presente em momentos sutis da sua rotina:
+
+* **Entretenimento:** Os algoritmos da Netflix, Spotify ou TikTok que "adivinham" o que você quer ver ou ouvir.
+* **Transporte:** Aplicativos de mapas (Google Maps/Waze) que recalculam rotas em tempo real prevendo o tráfego.
+* **Finanças:** Sistemas que detectam tentativas de fraude no seu cartão de crédito em milésimos de segundo.
+* **Comunicação:** Tradutores simultâneos e corretores gramaticais avançados que entendem o contexto da sua frase, não apenas as palavras isoladas.
+
+---
+
+### 3. Formas mais comuns de uso atualmente (2026)
+Hoje, a interação com a IA se tornou muito mais direta e colaborativa:
+
+* **IA Generativa:** Ferramentas como o Gemini e o ChatGPT são usadas para criar textos, códigos de programação, imagens e até vídeos a partir de comandos simples.
+* **Copilotos de Produtividade:** Softwares de escritório (como editores de texto e planilhas) agora possuem assistentes integrados que resumem reuniões, criam apresentações inteiras ou analisam dados complexos para você.
+* **Busca Semântica:** Diferente das buscas por palavras-chave de antigamente, os buscadores hoje conversam com você, entregando respostas diretas e sintetizadas em vez de apenas uma lista de links.
+* **Agentes Especializados:** Na sua faculdade ou no trabalho, é comum o uso de IAs focadas em nichos, como assistentes jurídicos para análise de contratos ou assistentes médicos para apoio em diagnósticos.
+
+---
+
+### 4. Análise: Impactos e Cenários Futuros
+Do meu ponto de vista como IA, estamos vivendo a transição da "IA que responde" para a **"IA que age"** (os chamados Agentes Autônomos).
+
+**Impactos Positivos:**
+* **Democratização do Conhecimento:** A capacidade de aprender qualquer assunto com um tutor personalizado disponível 24h.
+* **Aceleração Científica:** Descoberta de novos materiais e medicamentos em meses, algo que levaria décadas.
+
+**Desafios e Cenários:**
+* **Mercado de Trabalho:** O foco mudará da "execução técnica" para a "curadoria e estratégia". Saber fazer as perguntas certas (*Prompt Engineering*) e ter pensamento crítico será mais importante do que saber operar uma ferramenta específica.
+* **Ética e Autenticidade:** Em um mundo onde a IA pode gerar qualquer imagem ou vídeo, a verificação da verdade e o combate às *deepfakes* serão batalhas centrais.
+* **Sustentabilidade:** O custo energético para manter essas inteligências é alto, o que exigirá inovações em hardware "verde" nos próximos anos.
+
+Em resumo: a IA não vai substituir o humano, mas o humano que utiliza IA terá uma vantagem competitiva imensa sobre aquele que a ignora. Para um estudante, o segredo é usar a tecnologia para **amplificar** sua capacidade intelectual, e não para substituí-la.]
+
+
+Aula 4 - Pratica 1, caso 1:
+
+PROMPT:
+[Responda de forma direta:
+Uma loja vende 3 tipos de produto.
+A representa 40%, B 35% e C o restante.
+Total de vendas: R$ 8.000.
+Quanto foi vendido de C?]
+
+RESPOSTA:
+[Foram vendidos **R$ 2.000** do produto C.
+
+Aqui está a lógica direta:
+
+1.  **Porcentagem de C:** Se A (40%) + B (35%) somam 75%, o restante para C é **25%** ($100\% - 75\% = 25\%$).
+2.  **Cálculo do valor:** 25% de R$ 8.000 é o mesmo que dividir o total por 4.
+    * $8.000 \div 4 = \mathbf{2.000}$]
+
+Aula 4 - Pratica 1, caso 2:
+
+PROMPT:
+[Resolva passo a passo:
+Um investimento de R$ 1.000 teve rendimento de 5% no primeiro mês e 10% no segundo mês. Qual o valor final?Mostre cada etapa antes da resposta final.]
+
+RESPOSTA:
+[Para calcular o valor final de um investimento com rendimentos sucessivos, aplicamos as porcentagens sobre o saldo acumulado de cada período.
+
+Aqui está o passo a passo:
+
+### 1. Rendimento do primeiro mês (5%)
+Primeiro, calculamos o rendimento sobre o valor inicial de R$ 1.000:
+* $5\% \text{ de } 1.000 = 0,05 \times 1.000 = 50$
+
+Somamos esse rendimento ao capital inicial:
+* $1.000 + 50 = \mathbf{1.050}$ (Saldo ao final do 1º mês)
+
+---
+
+### 2. Rendimento do segundo mês (10%)
+O segundo rendimento incide sobre o saldo atualizado (R$ 1.050), e não sobre o valor inicial (juros compostos):
+* $10\% \text{ de } 1.050 = 0,10 \times 1.050 = 105$
+
+Somamos esse novo rendimento ao saldo do mês anterior:
+* $1.050 + 105 = \mathbf{1.155}$
+
+---
+
+### Resposta Final:
+O valor final do investimento após os dois meses é **R$ 1.155**.
+
+> **Dica de cálculo rápido:** Você também pode multiplicar o valor inicial pelos fatores de aumento: $1.000 \times 1,05 \times 1,10 = 1.155$.]
+
+Aula 4 - Pratica 2, caso 1:
+
+PROMPT:
+Cite pesquisas recentes sobre uso de IA no mercado de trabalho.
+
+RESPOSTA:
+Pesquisas recentes indicam que a inteligência artificial está impactando o mercado de trabalho ao automatizar tarefas repetitivas, aumentar a produtividade e criar novas oportunidades em áreas como análise de dados e tecnologia. Estudos de organizações como McKinsey e World Economic Forum apontam mudanças significativas nas funções profissionais e na necessidade de novas habilidades.
+
+
+PROMPT:
+Cite pesquisas recentes sobre uso de IA no mercado de trabalho.
+
+Se não souber, diga.
+Indique nível de certeza.
+
+RESPOSTA:
+- McKinsey Global Institute — estudos sobre automação e impacto da IA no trabalho. Nível de certeza: alto.
+- World Economic Forum — relatórios sobre o futuro do trabalho e uso de IA. Nível de certeza: alto.
+- Relatórios acadêmicos específicos recentes — não posso afirmar nomes exatos sem acesso a fontes atualizadas no momento. Nível de certeza: baixo.
+
+Conclusão: Posso afirmar tendências gerais com segurança, mas não devo inventar estudos específicos.
+
+
+COMPARAÇÃO:
+A resposta sem controle é mais genérica e pode passar a impressão de que todas as informações são precisas. Já a resposta com controle é mais confiável, pois a IA indica o nível de certeza e admite quando não sabe, reduzindo o risco de informações inventadas.
+
+
+
+Aula 4 - Pratica 2, caso 2:
+
+PROMPT:
+Quais são os principais autores sobre metodologias ágeis atualmente?
+
+RESPOSTA:
+Os principais autores sobre metodologias ágeis incluem Ken Schwaber e Jeff Sutherland, criadores do Scrum, além de Martin Fowler, Mike Cohn e Alistair Cockburn, que são referências importantes no desenvolvimento de software e práticas ágeis.
+
+
+PROMPT:
+Quais são os principais autores sobre metodologias ágeis atualmente?
+
+Liste apenas autores que você tem alta confiança.
+Indique nível de certeza.
+
+RESPOSTA:
+- Ken Schwaber — co-criador do Scrum. Nível de certeza: alto.
+- Jeff Sutherland — co-criador do Scrum. Nível de certeza: alto.
+- Martin Fowler — referência em desenvolvimento ágil e arquitetura de software. Nível de certeza: alto.
+- Mike Cohn — especialista em Scrum e práticas ágeis. Nível de certeza: alto.
+- Alistair Cockburn — criador da metodologia Crystal. Nível de certeza: alto.
+
+
+COMPARAÇÃO:
+Na versão sem controle, a resposta lista autores conhecidos sem indicar o nível de confiabilidade. Já na versão com controle, a IA limita a resposta a autores com alta confiança e apresenta o nível de certeza, tornando a resposta mais segura e confiável.
+
+Aula 4 - Pratica 3, caso 1:
+
+PROMPT:
+[Explique o conceito de banco de dados.
+
+Responda em JSON com:
+- conceito
+- exemplos
+- importância]
+
+RESPOSTA:
+[```json
+{
+  "conceito": "Um banco de dados é uma coleção organizada de informações ou dados estruturados, geralmente armazenados eletronicamente em um sistema de computador. Ele é gerenciado por um Software chamado Sistema de Gerenciamento de Banco de Dados (SGBD), que permite a criação, consulta, atualização e administração desses dados de forma eficiente e segura.",
+  "exemplos": [
+    "Sistemas de reserva de passagens aéreas",
+    "Catálogos de produtos em e-commerces",
+    "Prontuários eletrônicos em hospitais",
+    "Histórico de transações bancárias",
+    "Listas de contatos e mensagens em redes sociais"
+  ],
+  "importancia": "Os bancos de dados são cruciais para a era da informação pois garantem a integridade e a segurança dos dados, permitem o acesso simultâneo de múltiplos usuários e facilitam a recuperação rápida de informações complexas. Sem eles, seria impossível escalar aplicações modernas ou realizar análises de dados para tomadas de decisão estratégica."
+}
+```]
+
+Aula 4 - Pratica 3, caso 2:
+
+PROMPT:
+[Explique o conceito de banco de dados.
+
+Responda em tabela Markdown com:
+- conceito
+- exemplos
+- importância]
+
+RESPOSTA:
+[```json
+{
+  "conceito": "Um banco de dados é uma coleção organizada de informações ou dados estruturados, geralmente armazenados eletronicamente em um sistema de computador. Ele é gerenciado por um Software chamado Sistema de Gerenciamento de Banco de Dados (SGBD), que permite a criação, consulta, atualização e administração desses dados de forma eficiente e segura.",
+  "exemplos": [
+    "Sistemas de reserva de passagens aéreas",
+    "Catálogos de produtos em e-commerces",
+    "Prontuários eletrônicos em hospitais",
+    "Histórico de transações bancárias",
+    "Listas de contatos e mensagens em redes sociais"
+  ],
+  "importancia": "Os bancos de dados são cruciais para a era da informação pois garantem a integridade e a segurança dos dados, permitem o acesso simultâneo de múltiplos usuários e facilitam a recuperação rápida de informações complexas. Sem eles, seria impossível escalar aplicações modernas ou realizar análises de dados para tomadas de decisão estratégica."
+}
+```]
+
+COMPARAÇÃO:
+O formato JSON é mais útil para sistemas e programação. A tabela Markdown organiza melhor a visualização. A lista numerada é mais simples e direta para leitura.
+
+Aula 4 - Pratica 4, caso 1:
+
+PROMPT:
+[Vamos resolver em etapas a criação de uma aplicação de eventos:
+
+1. Ideia geral
+2. Funcionalidades
+3. Estrutura de dados
+4. Fluxo do sistema]
+
+RESPOSTA:
+[Com certeza! Adorei a iniciativa. Criar uma aplicação de eventos é um excelente projeto para exercitar tanto o raciocínio de produto quanto a arquitetura de sistemas.
+
+Vamos construir essa base sólida seguindo o seu roteiro:
+
+---
+
+## 1. Ideia Geral
+A aplicação será uma plataforma centralizada para a **gestão de eventos ponta a ponta**. O objetivo é conectar **organizadores** (que criam e gerenciam a logística) a **participantes** (que descobrem e se inscrevem).
+
+* **Público-alvo:** De pequenos workshops e meetups a grandes conferências.
+* **Diferencial:** Foco em usabilidade e check-in rápido (via QR Code).
+
+---
+
+## 2. Funcionalidades
+Para manter o MVP (Produto Mínimo Viável) focado, vamos dividir em dois perfis:
+
+### Para o Organizador
+* **Criação de Eventos:** Cadastro de nome, data, local (ou link), descrição e número de vagas.
+* **Gestão de Inscrições:** Lista de participantes em tempo real.
+* **Check-in:** Ferramenta para validar a entrada do participante no dia do evento.
+* **Dashboard:** Visão rápida de quantos ingressos foram vendidos/reservados.
+
+### Para o Participante
+* **Busca/Discovery:** Listagem de eventos disponíveis.
+* **Inscrição:** Processo de reserva de vaga.
+* **Meus Ingressos:** Área para visualizar eventos confirmados e o QR Code de entrada.
+* **Perfil:** Edição de dados básicos.
+
+---
+
+## 3. Estrutura de Dados
+Uma modelagem eficiente é o coração do sistema. Aqui está uma sugestão de entidades e seus atributos principais:
+
+| Entidade | Atributos Principais |
+| :--- | :--- |
+| **Usuário** | `id`, `nome`, `email`, `senha`, `tipo` (organizador/participante) |
+| **Evento** | `id`, `id_organizador`, `titulo`, `descricao`, `data`, `localizacao`, `capacidade_max` |
+| **Inscrição** | `id`, `id_usuario`, `id_evento`, `status` (confirmada/cancelada), `data_inscricao` |
+| **Check-in** | `id`, `id_inscricao`, `horario_entrada` |
+
+---
+
+## 4. Fluxo do Sistema
+O fluxo define como a informação viaja entre os pontos. Podemos visualizar o caminho principal do usuário:
+
+1.  **Descoberta:** O Participante navega pela home e seleciona um Evento.
+2.  **Validação:** O sistema verifica se ainda existem vagas disponíveis (Baseado na `capacidade_max` vs. `Inscrições` ativas).
+3.  **Registro:** O Participante confirma a inscrição e o sistema gera um registro na tabela **Inscrição**.
+4.  **Confirmação:** O sistema gera um QR Code (ou código único) vinculado ao ID da inscrição.
+5.  **Evento:** No dia, o Organizador lê o código, o sistema busca a **Inscrição** e cria o registro de **Check-in**.
+
+
+
+---
+
+**Qual dessas etapas você gostaria de detalhar agora?** Podemos começar a desenhar a interface (UI), escolher o stack tecnológico ou aprofundar na lógica de alguma funcionalidade específica!]
+
+Aula 4 - Pratica 4, caso 2:
+
+PROMPT:
+[Vamos resolver em etapas a criação de um sistema de cadastro de usuários:
+
+1. Defina os campos necessários
+2. Estruture os dados
+3. Gere exemplos de usuários
+
+Gere 5 usuários fictícios em JSON contendo:
+- id
+- nome
+- email]
+
+RESPOSTA:
+[Excelente abordagem. Ter um sistema de cadastro de usuários bem definido é a base para qualquer aplicação segura e funcional.
+
+Aqui está a estruturação dessas etapas:
+
+### 1. Definição dos Campos Necessários
+Para um cadastro básico, mas completo o suficiente para autenticação e comunicação, os campos essenciais são:
+
+* **ID (Identificador Único):** Um valor exclusivo (geralmente um UUID ou um número incremental) para distinguir cada usuário no banco de dados.
+* **Nome Completo:** Para identificação pessoal e tratamento em interfaces.
+* **E-mail:** Utilizado como login único e canal de comunicação/recuperação de conta.
+* **Senha (Password):** Armazenada sempre de forma criptografada (hash).
+* **Data de Criação (Created At):** Para registro de quando o usuário se juntou à plataforma.
+* **Status:** Para indicar se a conta está ativa, pendente ou suspensa.
+
+### 2. Estrutura de Dados
+Para organizar esses campos de forma técnica, podemos pensar em um objeto que segue o padrão de bancos de dados relacionais ou NoSQL. Abaixo, a estrutura lógica:
+
+
+
+* **id:** `string` (UUID) ou `integer`
+* **nome:** `string`
+* **email:** `string` (deve ser único)
+* **senha_hash:** `string`
+* **data_criacao:** `datetime`
+* **ativo:** `boolean`
+
+---
+
+### 3. Exemplos de Usuários (JSON)
+Conforme solicitado, aqui estão 5 usuários fictícios formatados em JSON:
+
+```json
+[
+  {
+    "id": 1,
+    "nome": "Ana Beatriz Silva",
+    "email": "ana.beatriz@email.com"
+  },
+  {
+    "id": 2,
+    "nome": "Carlos Eduardo Souza",
+    "email": "carlos.edu@provedor.com.br"
+  },
+  {
+    "id": 3,
+    "nome": "Mariana Oliveira",
+    "email": "mari.oliveira@techmail.com"
+  },
+  {
+    "id": 4,
+    "nome": "Ricardo Pereira",
+    "email": "ricardo.p@servico.net"
+  },
+  {
+    "id": 5,
+    "nome": "Fernanda Lima",
+    "email": "fer.lima@webmail.org"
+  }
+]
+```
+
+Deseja que eu ajude com a próxima etapa, como a criação das rotas de API para salvar esses dados ou a lógica de validação de e-mail?]
+
