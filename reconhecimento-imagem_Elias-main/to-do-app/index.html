@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>To-Do App</title>
+  <meta name="description" content="Gerencie suas tarefas de forma simples e elegante." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * { font-family: 'Inter', sans-serif; }
+
+    body {
+      background-color: #0f172a;
+      background-image:
+        radial-gradient(ellipse at 20% 30%, rgba(99, 102, 241, 0.15) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 70%, rgba(16, 185, 129, 0.10) 0%, transparent 60%);
+      min-height: 100vh;
+    }
+
+    .glass {
+      background: rgba(30, 41, 59, 0.65);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    .glass-input {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #f1f5f9;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .glass-input:focus {
+      outline: none;
+      border-color: rgba(99, 102, 241, 0.6);
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+    }
+    .glass-input::placeholder { color: #475569; }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #6366f1, #4f46e5);
+      color: white;
+      font-weight: 600;
+      border-radius: 0.625rem;
+      transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+    }
+    .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4); }
+    .btn-primary:active { transform: translateY(0); }
+
+    .btn-danger {
+      background: rgba(239, 68, 68, 0.15);
+      color: #f87171;
+      border: 1px solid rgba(239, 68, 68, 0.2);
+      font-weight: 500;
+      border-radius: 0.5rem;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-danger:hover { background: rgba(239, 68, 68, 0.25); transform: translateY(-1px); }
+
+    .btn-success {
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.2);
+      font-weight: 500;
+      border-radius: 0.5rem;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-success:hover { background: rgba(16, 185, 129, 0.25); transform: translateY(-1px); }
+    .btn-success:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+    .badge-work  { background: rgba(59,130,246,0.15);  color: #60a5fa; border: 1px solid rgba(59,130,246,0.25); }
+    .badge-personal { background: rgba(167,139,250,0.15); color: #a78bfa; border: 1px solid rgba(167,139,250,0.25); }
+    .badge-study { background: rgba(52,211,153,0.15);  color: #34d399; border: 1px solid rgba(52,211,153,0.25); }
+
+    .todo-done { opacity: 0.45; }
+    .todo-done .todo-title { text-decoration: line-through; }
+
+    .fade-in { animation: fadeIn 0.3s ease forwards; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+    .hidden { display: none !important; }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(99,102,241,0.3); border-radius: 4px; }
+  </style>
+</head>
+<body class="text-slate-200">
+
+  <!-- ═══════════════════ AUTH ═══════════════════ -->
+  <div id="auth-view" class="min-h-screen flex items-center justify-center p-4">
+    <div class="w-full max-w-md">
+
+      <!-- Logo / Brand -->
+      <div class="text-center mb-8">
+        <div class="inline-flex items-center gap-2 mb-3">
+          <div class="w-9 h-9 rounded-xl bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center">
+            <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+            </svg>
+          </div>
+          <span class="text-xl font-bold text-white tracking-tight">TaskFlow</span>
+        </div>
+        <p class="text-slate-400 text-sm">Organize. Foque. Conquiste.</p>
+      </div>
+
+      <div class="glass rounded-2xl p-8">
+
+        <!-- LOGIN -->
+        <div id="login-section">
+          <h2 class="text-2xl font-bold text-white mb-6">Entrar na conta</h2>
+          <form id="login-form" novalidate class="space-y-4">
+            <div>
+              <label for="login-email" class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">E-mail</label>
+              <input id="login-email" type="email" placeholder="voce@email.com"
+                class="glass-input w-full px-4 py-3 rounded-xl text-sm" />
+            </div>
+            <div>
+              <label for="login-password" class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Senha</label>
+              <input id="login-password" type="password" placeholder="••••••••"
+                class="glass-input w-full px-4 py-3 rounded-xl text-sm" />
+            </div>
+            <p id="login-error" class="hidden text-red-400 text-xs font-medium bg-red-500/10 border border-red-500/20 px-3 py-2 rounded-lg"></p>
+            <button id="login-btn" type="submit" class="btn-primary w-full py-3 text-sm mt-2">Entrar</button>
+          </form>
+          <p class="text-center text-sm text-slate-500 mt-6">
+            Novo por aqui?
+            <button id="go-register" class="text-indigo-400 hover:text-indigo-300 font-semibold ml-1 transition-colors">Criar conta</button>
+          </p>
+        </div>
+
+        <!-- CADASTRO -->
+        <div id="register-section" class="hidden">
+          <h2 class="text-2xl font-bold text-white mb-6">Criar conta</h2>
+          <form id="register-form" novalidate class="space-y-4">
+            <div>
+              <label for="reg-name" class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Nome completo</label>
+              <input id="reg-name" type="text" placeholder="Seu nome"
+                class="glass-input w-full px-4 py-3 rounded-xl text-sm" />
+            </div>
+            <div>
+              <label for="reg-email" class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">E-mail</label>
+              <input id="reg-email" type="email" placeholder="voce@email.com"
+                class="glass-input w-full px-4 py-3 rounded-xl text-sm" />
+            </div>
+            <div>
+              <label for="reg-password" class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Senha</label>
+              <input id="reg-password" type="password" placeholder="Mínimo 6 caracteres"
+                class="glass-input w-full px-4 py-3 rounded-xl text-sm" />
+            </div>
+            <p id="register-error" class="hidden text-red-400 text-xs font-medium bg-red-500/10 border border-red-500/20 px-3 py-2 rounded-lg"></p>
+            <button id="register-btn" type="submit" class="btn-primary w-full py-3 text-sm mt-2">Criar conta</button>
+          </form>
+          <p class="text-center text-sm text-slate-500 mt-6">
+            Já tem conta?
+            <button id="go-login" class="text-indigo-400 hover:text-indigo-300 font-semibold ml-1 transition-colors">Fazer login</button>
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════ DASHBOARD ═══════════════════ -->
+  <div id="dashboard-view" class="hidden min-h-screen flex flex-col">
+
+    <!-- Header -->
+    <header class="glass border-b border-white/5 sticky top-0 z-10">
+      <div class="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-lg bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center">
+            <svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+            </svg>
+          </div>
+          <span class="font-bold text-white text-lg tracking-tight">TaskFlow</span>
+        </div>
+        <div class="flex items-center gap-4">
+          <p class="text-slate-300 text-sm hidden sm:block">
+            Olá, <span id="header-username" class="font-semibold text-indigo-300"></span> 👋
+          </p>
+          <button id="logout-btn" class="btn-danger px-4 py-2 text-sm">Sair</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 max-w-4xl mx-auto w-full px-4 sm:px-6 py-8 space-y-6">
+
+      <!-- Greeting (mobile) -->
+      <div class="sm:hidden">
+        <h1 class="text-xl font-bold text-white">Olá, <span id="greeting-username" class="text-indigo-300"></span> 👋</h1>
+        <p class="text-slate-400 text-sm mt-1">Veja suas tarefas de hoje.</p>
+      </div>
+      <div class="hidden sm:block">
+        <h1 class="text-2xl font-bold text-white">Suas Tarefas</h1>
+        <p class="text-slate-400 text-sm mt-1">Organize seu dia de forma simples.</p>
+      </div>
+
+      <!-- Form Card -->
+      <div class="glass rounded-2xl p-6">
+        <h2 class="text-base font-semibold text-slate-200 mb-5 flex items-center gap-2">
+          <svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+          </svg>
+          Nova Tarefa
+        </h2>
+        <form id="todo-form" novalidate class="space-y-4">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div class="sm:col-span-2">
+              <label for="todo-title" class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Título <span class="text-red-400">*</span></label>
+              <input id="todo-title" type="text" placeholder="Ex: Revisar relatório..."
+                class="glass-input w-full px-4 py-3 rounded-xl text-sm" />
+            </div>
+            <div>
+              <label for="todo-type" class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Tipo</label>
+              <select id="todo-type" class="glass-input w-full px-4 py-3 rounded-xl text-sm appearance-none cursor-pointer">
+                <option value="Trabalho">💼 Trabalho</option>
+                <option value="Pessoal">👤 Pessoal</option>
+                <option value="Estudos">📚 Estudos</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label for="todo-desc" class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Descrição <span class="text-slate-600 font-normal normal-case">(opcional)</span></label>
+            <textarea id="todo-desc" rows="3" placeholder="Detalhes da tarefa..."
+              class="glass-input w-full px-4 py-3 rounded-xl text-sm resize-none"></textarea>
+          </div>
+          <p id="todo-error" class="hidden text-red-400 text-xs font-medium bg-red-500/10 border border-red-500/20 px-3 py-2 rounded-lg"></p>
+          <div class="flex justify-end">
+            <button type="submit" class="btn-primary px-6 py-3 text-sm flex items-center gap-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/>
+              </svg>
+              Adicionar Tarefa
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Stats bar -->
+      <div class="grid grid-cols-3 gap-3">
+        <div class="glass rounded-xl p-4 text-center">
+          <p class="text-2xl font-bold text-white" id="stat-total">0</p>
+          <p class="text-xs text-slate-400 mt-1">Total</p>
+        </div>
+        <div class="glass rounded-xl p-4 text-center">
+          <p class="text-2xl font-bold text-indigo-400" id="stat-pending">0</p>
+          <p class="text-xs text-slate-400 mt-1">Pendentes</p>
+        </div>
+        <div class="glass rounded-xl p-4 text-center">
+          <p class="text-2xl font-bold text-emerald-400" id="stat-done">0</p>
+          <p class="text-xs text-slate-400 mt-1">Concluídas</p>
+        </div>
+      </div>
+
+      <!-- Task List -->
+      <div>
+        <h2 class="text-base font-semibold text-slate-300 mb-4 flex items-center gap-2">
+          <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/>
+          </svg>
+          Lista de Tarefas
+        </h2>
+        <div id="todo-list" class="space-y-3">
+          <!-- Tasks rendered by JS -->
+        </div>
+        <div id="empty-state" class="hidden glass rounded-2xl p-12 text-center">
+          <div class="w-16 h-16 rounded-full bg-slate-800 flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+            </svg>
+          </div>
+          <p class="text-slate-400 font-medium">Nenhuma tarefa cadastrada ainda.</p>
+          <p class="text-slate-600 text-sm mt-1">Use o formulário acima para adicionar a primeira!</p>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
